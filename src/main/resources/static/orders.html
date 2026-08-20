@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>ElektroStorage</h1>
+
+<nav>
+    <a href="components.html">Components</a> |
+    <a href="orders.html">Orders</a> |
+    <a href="inventory.html">Inventory</a> |
+    <a href="assemblies.html">Assemblies</a>
+</nav>
+
+<hr>
+
+<h2>Orders</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tracking code</th>
+        <th>Expected delivery</th>
+        <th>Sent date</th>
+        <th>Received date</th>
+        <th>Supplier</th>
+    </tr>
+    </thead>
+
+    <tbody id="orderTable">
+    </tbody>
+</table>
+<h2>Create order</h2>
+
+<form id="orderForm">
+
+    <label>Tracking code:</label>
+    <input type="text" id="trackingCode" required>
+
+    <br><br>
+
+    <label>Expected delivery date:</label>
+    <input type="date" id="expectedDeliveryDate" required>
+
+    <br><br>
+
+    <label>Supplier ID:</label>
+    <input type="number" id="supplierId" required>
+
+    <br><br>
+
+    <button type="submit">Create order</button>
+
+</form>
+<h2>Order items</h2>
+
+<label>Order ID:</label>
+<input type="number" id="orderId">
+
+<button onclick="loadOrderItems()">Show items</button>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Component</th>
+        <th>Quantity</th>
+    </tr>
+    </thead>
+
+    <tbody id="orderItemTable">
+    </tbody>
+</table>
+
+<h2>Add item to order</h2>
+
+<label>Order ID:</label>
+<input type="number" id="addOrderId">
+
+<br><br>
+
+<label>Component ID:</label>
+<input type="number" id="componentId">
+
+<br><br>
+
+<label>Quantity:</label>
+<input type="number" id="quantity">
+
+<br><br>
+
+<button onclick="addOrderItem()">Add item</button>
+
+<h2>Send order</h2>
+
+<label>Order ID:</label>
+<input type="number" id="sendOrderId">
+
+<button onclick="sendOrder()">Send order</button>
+
+<h2>Receive order</h2>
+
+<label>Order ID:</label>
+<input type="number" id="receiveOrderId">
+
+<button onclick="receiveOrder()">Receive order</button>
+
+<script src="orders.js"></script>
+
+</body>
+</html>

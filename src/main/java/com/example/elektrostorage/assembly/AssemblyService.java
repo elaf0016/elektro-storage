@@ -42,4 +42,8 @@ public class AssemblyService {
 
         return assemblyItemRepository.save(item);
     }
+
+    public List<AssemblyItem> getItemsByAssemblyId(Long assemblyId) {
+        return assemblyItemRepository.findByAssemblyId(assemblyId);
+    }
 }

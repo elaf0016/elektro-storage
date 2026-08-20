@@ -31,4 +31,9 @@ public class AssemblyController {
 
         return assemblyService.addItem(assemblyId, componentId, quantity);
     }
+
+    @GetMapping("/{assemblyId}/items")
+    public List<AssemblyItem> getItems(@PathVariable Long assemblyId) {
+        return assemblyService.getItemsByAssemblyId(assemblyId);
+    }
 }

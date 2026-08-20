@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Assemblies</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>ElektroStorage</h1>
+
+<nav>
+    <a href="components.html">Components</a> |
+    <a href="orders.html">Orders</a> |
+    <a href="inventory.html">Inventory</a> |
+    <a href="assemblies.html">Assemblies</a>
+</nav>
+
+<hr>
+
+<h2>Assemblies</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+
+    <tbody id="assemblyTable">
+    </tbody>
+</table>
+
+<h2>Assembly items</h2>
+
+<label>Assembly ID:</label>
+<input type="number" id="assemblyId">
+
+<button onclick="loadAssemblyItems()">Show items</button>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Component</th>
+        <th>Quantity</th>
+    </tr>
+    </thead>
+
+    <tbody id="assemblyItemTable">
+    </tbody>
+</table>
+
+<script src="assemblies.js"></script>
+
+</body>
+</html>

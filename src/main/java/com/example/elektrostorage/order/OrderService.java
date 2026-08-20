@@ -43,6 +43,10 @@ public class OrderService {
         Component component = componentRepository.findById(componentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Component not found"));
 
+        if (component.isDiscontinued()) {
+            throw new BadRequestException("Discontinued component cannot be ordered");
+        }
+
         OrderItem item = new OrderItem(quantity, order, component);
 
         return orderItemRepository.save(item);
@@ -55,5 +59,19 @@ public class OrderService {
         order.setSentDate(LocalDate.now());
 
         return purchaseOrderRepository.save(order);
+    }
+
+    public PurchaseOrder receiveOrder(Long orderId) {
+
+        PurchaseOrder order = purchaseOrderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
+
+        order.setReceivedDate(LocalDate.now());
+
+        return purchaseOrderRepository.save(order);
+    }
+
+    public List<OrderItem> getItemsByOrderId(Long orderId) {
+        return orderItemRepository.findByPurchaseOrderId(orderId);
     }
 }

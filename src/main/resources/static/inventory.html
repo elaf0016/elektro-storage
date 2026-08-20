@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>ElektroStorage</h1>
+
+<nav>
+    <a href="components.html">Components</a> |
+    <a href="orders.html">Orders</a> |
+    <a href="inventory.html">Inventory</a> |
+    <a href="assemblies.html">Assemblies</a>
+</nav>
+
+<hr>
+
+<h2>Received components</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Component</th>
+        <th>Quantity</th>
+        <th>Order ID</th>
+        <th>Received date</th>
+    </tr>
+    </thead>
+
+    <tbody id="inventoryTable">
+    </tbody>
+</table>
+
+<h2>Count component</h2>
+
+<label>Component ID:</label>
+<input type="number" id="componentId">
+
+<br><br>
+
+<label>Quantity:</label>
+<input type="number" id="quantity">
+
+<br><br>
+
+<label>Counted by:</label>
+<input type="text" id="countedBy">
+
+<br><br>
+
+<button onclick="countComponent()">Submit count</button>
+
+<script src="inventory.js"></script>
+
+</body>
+</html>

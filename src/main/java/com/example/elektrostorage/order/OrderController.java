@@ -36,4 +36,14 @@ public class OrderController {
     public PurchaseOrder sendOrder(@PathVariable Long orderId) {
         return orderService.sendOrder(orderId);
     }
+
+    @PutMapping("/{orderId}/receive")
+    public PurchaseOrder receiveOrder(@PathVariable Long orderId) {
+        return orderService.receiveOrder(orderId);
+    }
+
+    @GetMapping("/{orderId}/items")
+    public List<OrderItem> getItems(@PathVariable Long orderId) {
+        return orderService.getItemsByOrderId(orderId);
+    }
 }

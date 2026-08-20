@@ -1,5 +1,6 @@
 package com.example.elektrostorage.inventory;
 
+import com.example.elektrostorage.order.OrderItem;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +16,8 @@ public class InventoryController {
     }
 
     @GetMapping
-    public List<InventoryCount> getAllCounts() {
-        return inventoryService.getAllCounts();
+    public List<OrderItem> getAllCounts() {
+        return inventoryService.getReceivedItems();
     }
 
     @PostMapping("/count")
