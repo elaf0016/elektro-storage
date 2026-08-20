@@ -2,6 +2,7 @@ package com.example.elektrostorage.inventory;
 
 import com.example.elektrostorage.component.Component;
 import com.example.elektrostorage.component.ComponentRepository;
+import com.example.elektrostorage.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -28,7 +29,7 @@ public class InventoryService {
                                          String countedBy) {
 
         Component component = componentRepository.findById(componentId)
-                .orElseThrow(() -> new RuntimeException("Component not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Component not found"));
 
         InventoryCount count = new InventoryCount(
                 quantity,

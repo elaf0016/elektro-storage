@@ -2,6 +2,8 @@ package com.example.elektrostorage.order;
 
 import com.example.elektrostorage.component.Component;
 import com.example.elektrostorage.component.ComponentRepository;
+import com.example.elektrostorage.exception.BadRequestException;
+import com.example.elektrostorage.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -32,14 +34,14 @@ public class OrderService {
 
     public OrderItem addItem(Long orderId, Long componentId, int quantity) {
         PurchaseOrder order = purchaseOrderRepository.findById(orderId)
-                .orElseThrow(() -> new RuntimeException("Order not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
 
         if (order.getSentDate() != null) {
-            throw new RuntimeException("Cannot add items to a sent order");
+            throw new BadRequestException("Cannot add items to a sent order");
         }
 
         Component component = componentRepository.findById(componentId)
-                .orElseThrow(() -> new RuntimeException("Component not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Component not found"));
 
         OrderItem item = new OrderItem(quantity, order, component);
 
@@ -48,7 +50,7 @@ public class OrderService {
 
     public PurchaseOrder sendOrder(Long orderId) {
         PurchaseOrder order = purchaseOrderRepository.findById(orderId)
-                .orElseThrow(() -> new RuntimeException("Order not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
 
         order.setSentDate(LocalDate.now());
 

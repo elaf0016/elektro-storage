@@ -1,5 +1,6 @@
 package com.example.elektrostorage.component;
 
+import com.example.elektrostorage.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class ComponentService {
 
     public Component discontinueComponent(Long id) {
         Component component = componentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Component not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Component not found"));
 
         component.setDiscontinued(true);
 
