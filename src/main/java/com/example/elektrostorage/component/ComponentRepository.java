@@ -1,4 +1,6 @@
 package com.example.elektrostorage.component;
 
-public class ComponentRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ComponentRepository extends JpaRepository<Component, Long> {
 }

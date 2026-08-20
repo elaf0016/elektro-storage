@@ -1,4 +1,57 @@
 package com.example.elektrostorage.order;
 
+import com.example.elektrostorage.component.Component;
+import com.example.elektrostorage.component.ComponentRepository;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@Service
 public class OrderService {
+
+    private final PurchaseOrderRepository purchaseOrderRepository;
+    private final OrderItemRepository orderItemRepository;
+    private final ComponentRepository componentRepository;
+
+    public OrderService(PurchaseOrderRepository purchaseOrderRepository,
+                        OrderItemRepository orderItemRepository,
+                        ComponentRepository componentRepository) {
+        this.purchaseOrderRepository = purchaseOrderRepository;
+        this.orderItemRepository = orderItemRepository;
+        this.componentRepository = componentRepository;
+    }
+
+    public List<PurchaseOrder> getAllOrders() {
+        return purchaseOrderRepository.findAll();
+    }
+
+    public PurchaseOrder createOrder(PurchaseOrder order) {
+        return purchaseOrderRepository.save(order);
+    }
+
+    public OrderItem addItem(Long orderId, Long componentId, int quantity) {
+        PurchaseOrder order = purchaseOrderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        if (order.getSentDate() != null) {
+            throw new RuntimeException("Cannot add items to a sent order");
+        }
+
+        Component component = componentRepository.findById(componentId)
+                .orElseThrow(() -> new RuntimeException("Component not found"));
+
+        OrderItem item = new OrderItem(quantity, order, component);
+
+        return orderItemRepository.save(item);
+    }
+
+    public PurchaseOrder sendOrder(Long orderId) {
+        PurchaseOrder order = purchaseOrderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        order.setSentDate(LocalDate.now());
+
+        return purchaseOrderRepository.save(order);
+    }
 }

@@ -1,4 +1,6 @@
 package com.example.elektrostorage.order;
 
-public class PurchaseOrderRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, Long> {
 }

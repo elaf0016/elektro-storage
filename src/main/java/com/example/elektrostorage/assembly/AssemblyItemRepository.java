@@ -1,4 +1,6 @@
 package com.example.elektrostorage.assembly;
 
-public class AssemblyItemRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AssemblyItemRepository extends JpaRepository<AssemblyItem, Long> {
 }

@@ -1,4 +1,6 @@
 package com.example.elektrostorage.order;
 
-public class OrderItemRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 }

@@ -1,4 +1,6 @@
 package com.example.elektrostorage.supplier;
 
-public class SupplierRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SupplierRepository extends JpaRepository<Supplier, Long> {
 }

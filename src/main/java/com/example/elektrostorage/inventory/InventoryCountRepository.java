@@ -1,4 +1,6 @@
 package com.example.elektrostorage.inventory;
 
-public class InventoryCountRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface InventoryCountRepository extends JpaRepository<InventoryCount, Long> {
 }
